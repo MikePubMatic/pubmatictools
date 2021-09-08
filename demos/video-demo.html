@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" type="image/png" href="/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <title>OpenWrap CS Video -- video.js with IMA</title>
+        <!-- Load dependent stylesheets. -->
+    	<link rel="stylesheet" href="https://googleads.github.io/videojs-ima/node_modules/video.js/dist/video-js.min.css" />
+    	<link rel="stylesheet" href="https://googleads.github.io/videojs-ima/node_modules/videojs-contrib-ads/dist/videojs.ads.css" />
+    	<link rel="stylesheet" href="https://googleads.github.io/videojs-ima/dist/videojs.ima.css" />
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+<script type="text/javascript">
+    var PWT = {};
+    (function() {
+        var purl = window.location.href;
+        var url = 'https://ads.pubmatic.com/AdServer/js/pwt/156276/2146';
+        var profileVersionId = '';
+        if (purl.indexOf('pwtv=') > 0) {
+            var regexp = /pwtv=(.*?)(&|$)/g;
+            var matches = regexp.exec(purl);
+            if (matches.length >= 2 && matches[1].length > 0) {
+                profileVersionId = '/' + matches[1];
+            }
+        }
+        var wtads = document.createElement('script');
+        wtads.async = true;
+        //wtads.async = false;
+        wtads.type = 'text/javascript';
+        wtads.src = url + profileVersionId + '/pwt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(wtads, node);
+    })();
+</script>
+    </head>
+    <body>
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+            <h5 class="my-0 mr-md-0 font-weight-normal"><a href="/index.html"><img src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" style="height:30px;"></a></h5>
+            <h3 class="my-1 mr-md-auto" style="margin:0 auto !important">OpenWrap Client Side Video -- video.js + IMA</h3>
+            <nav class="my-2 my-md-0 mr-md-3">
+            </nav>
+          </div>
+        <div class="example-video-container" style="width: 640px; height: 480px; background-color: black; margin:0 auto !important;">
+        <video id="content_video" class="video-js vjs-default-skin" preload="auto" width="640" height="480" playsinline>
+	    	<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" ></source>
+        </video>
+        </div>
+
+	<!-- Load dependent scripts -->
+	<script src="https://googleads.github.io/videojs-ima/node_modules/video.js/dist/video.min.js"></script>
+	<script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+	<script src="https://googleads.github.io/videojs-ima/node_modules/videojs-contrib-ads/dist/videojs.ads.min.js"></script>
+	<script src="https://googleads.github.io/videojs-ima/dist/videojs.ima.js"></script>
+	<script src="https://video-dev.github.io/can-autoplay/build/can-autoplay.js"></script>
+
+	
+        <script>
+          function invokeVideoPlayer(url) {
+			  var autoplayAllowed = false;
+			  var autoplayRequiresMute = false;
+		      var player;
+		      var wrapperDiv;
+
+		      function checkUnmutedAutoplaySupport() {
+			  canAutoplay
+			      .video({timeout: 100, muted: false})
+			      .then(function(response) {
+				  if(response.result === false) {
+				      // Unmuted autoplay is not allowed.
+				      checkMutedAutoplaySupport();
+				  } else {
+				      // Unmuted autoplay is allowed.
+				      autoplayAllowed = true;
+				      autoplayRequiresMute = false;
+				      initPlayer();
+				  }
+			      })
+		      }
+	
+		      function checkMutedAutoplaySupport() {
+			  canAutoplay
+			      .video({timeout: 100, muted: true})
+			      .then(function(response) {
+				  if(response.result === false) {
+				      // Muted autoplay is not allowed.
+				      autoplayAllowed = false;
+				      autoplayRequiresMute = false;
+				  } else {
+				      // Muted autoplay is allowed.
+				      autoplayAllowed = true;
+				      autoplayRequiresMute = true;
+				  }
+				  initPlayer();
+			      })
+		      }
+
+		      function initPlayer() {
+				  var vjsOptions = {
+				      autoplay: autoplayAllowed,
+				      muted: autoplayRequiresMute,
+				      debug: true,
+				  }
+		  player = videojs('content_video', vjsOptions);
+
+		  if (autoplayAllowed) {
+		      player.controls(false);
+		  }
+
+		  player.on('ads-manager', function(adsManager) {
+		      player.ima.addEventListener(google.ima.AdEvent.Type.ALL_ADS_COMPLETED,
+						  function(event){
+						      player.controls(true);
+						  });
+		  });
+
+		  var imaOptions = {
+		      id: 'content_video',
+		      adTagUrl: url
+		  };
+		  player.ima(imaOptions);
+
+		  if (!autoplayAllowed) {
+		      if (navigator.userAgent.match(/iPhone/i) ||
+			  navigator.userAgent.match(/iPad/i) ||
+			  navigator.userAgent.match(/Android/i)) {
+			  startEvent = 'touchend';
+		      }
+
+		      wrapperDiv = document.getElementById('content_video');
+		      wrapperDiv.addEventListener(startEvent, initAdDisplayContainer);
+		  }
+	      }
+
+	      function initAdDisplayContainer() {
+		  player.ima.initializeAdDisplayContainer();
+		  wrapperDiv.removeEventListener(startEvent, initAdDisplayContainer);
+	      }
+          
+              var startEvent = 'click';
+	      checkUnmutedAutoplaySupport();
+	  }
+        </script>
+
+        <script>
+
+          function ow_bids() {
+              if(typeof PWT.requestBids === 'function'){
+                  console.log("OpenWrap bidding starting");
+                  var ow_slots = [{
+                      code: "video-1", // mandatory
+                      divId: "content_video", // mandatory
+                      adUnitId: "/40619304/OW_Video", // mandatory: can be any string, GAM ad unit id is often used
+                      adUnitIndex: "0", // mandatory
+                      mediaTypes: { // mandatory
+			  			video: { // mandatory
+                              "playerSize": [640,480],//required in Prebid 4.0
+			  			}
+                      },
+                      sizes: [
+			  			[640, 480]
+                      ] // mandatory
+                  }];
+
+                  var start_time = new Date().getTime();
+                  PWT.requestBids(
+                      ow_slots,
+                      function(adUnitsArray) {
+                          var end_time = new Date().getTime();
+                          var diff = end_time - start_time;
+                          console.log("OpenWrap Time taken: " + diff.toString());
+						  console.log(adUnitsArray)
+                          var videoUrl = window.PWT.generateDFPURL(adUnitsArray[0], {});
+						  console.log("Ad tag: ",videoUrl)
+                          invokeVideoPlayer(videoUrl);
+                      }
+                  );
+              } else {
+                  setTimeout(ow_bids, 10);
+              }
+          }
+
+          ow_bids();
+
+        </script>
+    </body>
+
+</html>

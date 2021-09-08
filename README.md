@@ -1,2 +1,2 @@
-# pubmatictools
-Demos for the pubmatictools platform.
+# demo
+PubMatic OpenWrap demos

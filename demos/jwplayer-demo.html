@@ -1,0 +1,107 @@
+
+<!DOCTYPE HTML>
+<html lang="en-us">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="/favicon.ico">
+        <meta charset="utf-8" />
+        <title>OpenWrap Video -- JW player</title>
+                <!-- Bootstrap core CSS -->
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <!-- Loading Asynchronously -->
+        <script src=../demos/js/player.js></script>
+        <script type="text/javascript">            
+            function invokeVideoPlayer(divId, adTagUrl) {
+                jwplayer(divId).setup({
+                    file: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                    height: 360,
+                    width: 640,
+                    poster: 'bunny.jpg',
+                    advertising: {
+                        client: 'googima',
+                        tag: adTagUrl
+                    }
+                })
+            }
+        </script>
+        <script type="text/javascript">
+            (function () {
+            var purl = window.location.href;
+            var url = 'https://ads.pubmatic.com/AdServer/js/pwt/158879/2903'; // My test account
+            var profileVersionId = '';
+            if (purl.indexOf('pwtv=') > 0) {
+            var regexp = /pwtv=(.*?)(&|$)/g;
+            var matches = regexp.exec(purl);
+            if (matches.length >= 2 && matches[1].length > 0) {
+            profileVersionId = '/' + matches[1];
+            }
+            }
+            var wtads = document.createElement('script');
+            wtads.async = true;
+            wtads.type = 'text/javascript';
+            wtads.src = url + profileVersionId + '/pwt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(wtads, node);
+            })();
+        </script>
+        
+        <script type="text/javascript">
+            var googletag = googletag || {};
+            googletag.cmd = googletag.cmd || [];
+            var PWT = {}; //Initialize Namespace
+            PWT.jsLoaded = function () { //PubMatic pwt.js on load callback is used to load GPT
+                PWT.HookForPrebidRequestBids = function(adUnits){
+                    adUnits.forEach(function(au){
+                        if(au.mediaTypes.banner){
+                            delete au.mediaTypes.banner;
+                        }
+                    })
+                };
+                
+                
+                var gads = document.createElement('script');
+                gads.type = "text/javascript";
+                gads.async = true;
+                gads.src = 'https://www.googletagservices.com/tag/js/gpt.js';
+                var node = document.getElementsByTagName('script')[0];
+                node.parentNode.insertBefore(gads, node);
+            };
+        </script>
+        
+        <script type="text/javascript">
+            googletag.cmd.push(function () {
+            
+            var s1 = googletag.defineSlot('/15671365/todd-preroll', [
+            [640, 480]
+            ], 'videoAd-1').addService(googletag.pubads());
+            
+            if ("undefined" != typeof (PWT) && typeof (PWT.addKeyValuePairsToGPTSlots) == "function") {
+            PWT.requestBids(
+                PWT.generateConfForGPT(googletag.pubads().getSlots()),
+                function (adUnitsArray) {
+                    console.log(adUnitsArray)
+                    var adTagUrl = window.PWT.generateDFPURL(adUnitsArray[0], {
+                        section: 'blog',
+                        anotherKey: 'anotherValue'
+                    });
+                console.log("We got our ad tag from OpenWrap, so we will start the video player now...")
+                invokeVideoPlayer('videoAd-1',adTagUrl);
+                }
+                );
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+            <h5 class="my-0 mr-md-0 font-weight-normal"><a href="/index.html"><img src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" style="height:30px;"></a></h5>
+            <h3 class="my-1 mr-md-auto" style="margin:0 auto !important">OpenWrap Client Side Video -- JW player + IMA</h3>
+            <nav class="my-2 my-md-0 mr-md-3">
+            </nav>
+          </div>
+        <div id='videoAd-1' style="margin: 0 auto;"></div>
+
+        
+    </body>
+</html>
