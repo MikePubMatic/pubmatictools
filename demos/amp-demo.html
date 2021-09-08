@@ -1,103 +1,40 @@
-<!DOCTYPE html>
-<html ⚡ lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<script async src="https://cdn.ampproject.org/v0.js"></script>
-		<link rel="canonical" href="http://pubmatictools.com/demos/amp-demo.html" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<style amp-boilerplate>
-			body {
-				-webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-				-moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-				-ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-				animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-			}
-			@-webkit-keyframes -amp-start {
-				from {
-					visibility: hidden;
-				}
-				to {
-					visibility: visible;
-				}
-			}
-			@-moz-keyframes -amp-start {
-				from {
-					visibility: hidden;
-				}
-				to {
-					visibility: visible;
-				}
-			}
-			@-ms-keyframes -amp-start {
-				from {
-					visibility: hidden;
-				}
-				to {
-					visibility: visible;
-				}
-			}
-			@-o-keyframes -amp-start {
-				from {
-					visibility: hidden;
-				}
-				to {
-					visibility: visible;
-				}
-			}
-			@keyframes -amp-start {
-				from {
-					visibility: hidden;
-				}
-				to {
-					visibility: visible;
-				}
-			}
-		</style>
-		<noscript>
-			<style amp-boilerplate>
-				body {
-					-webkit-animation: none;
-					-moz-animation: none;
-					-ms-animation: none;
-					animation: none;
-				}
-			</style>
-		</noscript>
-	</head>
-	<body>
-		<header class="headerbar">
-			<a href="/index.html">
-				<amp-img class="home-button" src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" width="1859" height="271" layout="responsive"></amp-img>
-			</a>
-			<h2>AMP ad demo</h2>
-		</header>
-
-		<amp-iframe
-			title="User Sync"
-			width="1"
-			height="1"
-			sandbox="allow-same-origin allow-scripts"
-			frameborder="0"
-			src="https://ads.pubmatic.com/AdServer/js/pwtSync/load-cookie.html?pubid=160980&profid=5120&bidders=appnexus,pubmatic,districtm,rubicon,ix"
-		>
-		</amp-iframe>
-
-		<amp-ad
-			data-slot="/53373454/owstandard-pm"
-			width="300"
-			height="250"
-			type="doubleclick"
-			json='{"targeting":{"amp-demo":"true"}}'
-			rtc-config='{
-                 "vendors": {
-                    "openwrap": {
-                      "PROFILE_ID" : "5120",
-                      "PUB_ID" : "160980"
-                    }
-                  },
-                  "timeoutMillis": 1000
-              }'
-		>
-		</amp-ad>
-	</body>
+<html>
+ 
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OpenWrap AMP Demo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/devices.css" type="text/css">
+</head>
+ 
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+        <h5 class="my-0 mr-md-0 font-weight-normal"><a href="/index.html"><img src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" style="height:30px;"></a></h5>
+        <h3 class="my-1 mr-md-auto" style="margin:0 auto !important">OpenWrap AMP demo</h3>
+        <nav class="my-2 my-md-0 mr-md-3">
+        </nav>
+    </div>
+    <div class="marvel-device iphone-x" style="margin:0 auto;">
+        <div class="notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+        </div>
+        <div class="top-bar"></div>
+        <div class="sleep"></div>
+        <div class="bottom-bar"></div>
+        <div class="volume"></div>
+        <div class="overflow">
+            <div class="shadow shadow--tr"></div>
+            <div class="shadow shadow--tl"></div>
+            <div class="shadow shadow--br"></div>
+            <div class="shadow shadow--bl"></div>
+        </div>
+        <div class="inner-shadow"></div>
+        <div class="screen">
+            <iframe src="amp-demo-iframe.html?pubmaticTest=true&pwtvc=1" frameborder="0" style="margin-top: 32px; height: inherit; width: inherit;"></iframe>
+        </div>
+    </div>
+</body>
+ 
 </html>
