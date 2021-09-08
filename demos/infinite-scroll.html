@@ -1,191 +1,255 @@
 <head>
-    <link rel="icon" type="image/png" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8" />
-    <title>OpenWrap -- Infinite Scroll</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
-    <style>
-        .article {
-            max-width:80%;
-            margin:0 auto;
-        }
-    </style>
-    <script type="text/javascript">
-        var PWT={}; //Initialize Namespace
-        var googletag = googletag || {};
-        googletag.cmd = googletag.cmd || [];
-        var gptRan = false;
-        PWT.jsLoaded = function(){ //PubMatic pwt.js on load callback is used to load GPT
-            loadGPT();
-        };
-        (function() {
-	        var purl = window.location.href;
-	        var url = '//ads.pubmatic.com/AdServer/js/pwt/160980/5113';
-	        var profileVersionId = '';
-	        if(purl.indexOf('pwtv=')>0){
-		        var regexp = /pwtv=(.*?)(&|$)/g;
-		        var matches = regexp.exec(purl);
-		        if(matches.length >= 2 && matches[1].length > 0){
-			        profileVersionId = '/'+matches[1];
-		        }
-	        }
-	        var wtads = document.createElement('script');
-	        wtads.async = true;
-	        wtads.type = 'text/javascript';
-	        wtads.src = url+profileVersionId+'/pwt.js';
-	        var node = document.getElementsByTagName('script')[0];
-	        node.parentNode.insertBefore(wtads, node);
-        })();
-        var loadGPT = function() {
-            // Check the gptRan flag
-            if (!gptRan) {
-                gptRan = true;
-                var gads = document.createElement('script');
-                var useSSL = 'https:' == document.location.protocol;
-                gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
-                var node = document.getElementsByTagName('script')[0];
-                node.parentNode.insertBefore(gads, node);
-            }
-        };
-        // Failsafe to call gpt
-        setTimeout(loadGPT, 500);
-    </script>
-    <script>
-   
-        var adslot0;
-           
-         googletag.cmd.push(function() {
-           
-           // Declare any slots initially present on the page
-           adslot0 = googletag.defineSlot('/53373454/owstandard-pm', [300, 250], 'adslot0').
-               addService(googletag.pubads());
-           
-           // Infinite scroll requires SRA
-           googletag.pubads().enableSingleRequest();
-           
-           // Disable initial load, we will use refresh() to fetch ads.
-           // Calling this function means that display() calls just
-           // register the slot as ready, but do not fetch ads for it.
-           googletag.pubads().disableInitialLoad();
-           
-           // Enable services
-           googletag.enableServices();
-         });
-    </script>
+	<link rel="icon" type="image/png" href="/favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta charset="utf-8" />
+	<title>OpenWrap -- Infinite Scroll</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
+	<script src="js/consoleOutput.js" defer></script>
+	<script type="text/javascript">
+		var PWT = {}; //Initialize Namespace
+		var googletag = googletag || {};
+		googletag.cmd = googletag.cmd || [];
+		var gptRan = false;
+		PWT.jsLoaded = function () {
+			//PubMatic pwt.js on load callback is used to load GPT
+			loadGPT();
+		};
+		(function () {
+			var purl = window.location.href;
+			var url = "//ads.pubmatic.com/AdServer/js/pwt/160980/5113";
+			var profileVersionId = "";
+			if (purl.indexOf("pwtv=") > 0) {
+				var regexp = /pwtv=(.*?)(&|$)/g;
+				var matches = regexp.exec(purl);
+				if (matches.length >= 2 && matches[1].length > 0) {
+					profileVersionId = "/" + matches[1];
+				}
+			}
+			var wtads = document.createElement("script");
+			wtads.async = true;
+			wtads.type = "text/javascript";
+			wtads.src = url + profileVersionId + "/pwt.js";
+			var node = document.getElementsByTagName("script")[0];
+			node.parentNode.insertBefore(wtads, node);
+		})();
+		var loadGPT = function () {
+			// Check the gptRan flag
+			if (!gptRan) {
+				gptRan = true;
+				var gads = document.createElement("script");
+				var useSSL = "https:" == document.location.protocol;
+				gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
+				var node = document.getElementsByTagName("script")[0];
+				node.parentNode.insertBefore(gads, node);
+			}
+		};
+		// Failsafe to call gpt
+		setTimeout(loadGPT, 500);
+	</script>
+	<script>
+		var adslot0;
 
+		googletag.cmd.push(function () {
+			// Declare any slots initially present on the page
+			adslot0 = googletag.defineSlot("/53373454/owstandard-pm", [300, 250], "adslot0").addService(googletag.pubads());
+
+			// Infinite scroll requires SRA
+			googletag.pubads().enableSingleRequest();
+
+			// Disable initial load, we will use refresh() to fetch ads.
+			// Calling this function means that display() calls just
+			// register the slot as ready, but do not fetch ads for it.
+			googletag.pubads().disableInitialLoad();
+
+			// Enable services
+			googletag.enableServices();
+		});
+	</script>
+	<style>
+        .article {
+			max-width: 40%;
+			padding: 10px;
+		}
+		#console-log-div {
+			min-height: 55px;
+			position: absolute;
+			width: 50%;
+			left: 45%;
+			top: 104px;
+			margin: 10px;
+			padding: 5px 0 0 0;
+
+			font-family: "Input Mono", monospace;
+			font-weight: 400;
+			font-size: 0.8em;
+			line-height: 1.4em;
+
+			color: rgba(0, 0, 0, 0.61);
+			border-radius: 2px;
+
+			box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+			background-color: #ebebeb;
+		}
+		#legend,
+		.log-row,
+		td {
+			padding: 10px 0 8px 0;
+			text-indent: 10px;
+		}
+		#legend {
+			padding-bottom: 12px;
+			font-size: 1.2em;
+		}
+		.log-row:nth-child(odd) {
+			background: rgba(0, 0, 0, 0.1);
+		}
+		thead {
+			background: rgba(0, 0, 0, 0.2);
+		}
+		#console-log-text {
+			overflow-wrap: break-word;
+			overflow-y: scroll;
+			max-height: 80vh;
+		}
+		/* Extra small devices (phones, 600px and down) */
+		@media only screen and (max-width: 600px) {
+			#console-log-div {
+				position: relative;
+				width: auto;
+				padding: 10px;
+				left: auto;
+				top: auto;
+			}
+            .article {
+			max-width: 100%;
+			padding: 10px;
+		}
+		}
+	</style>
 </head>
 <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-        <h5 class="my-0 mr-md-0 font-weight-normal"><a href="/index.html"><img src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" style="height:30px;"></a></h5>
-        <h3 class="my-1 mr-md-auto" style="margin:0 auto !important">OpenWrap Infinite Scroll</h3>
-        <nav class="my-2 my-md-0 mr-md-3">
-        </nav>
-      </div>
-    <div id="article-feed">
-        <!-- .articles will be added to .article-feed -->
-        <article class="article">
-            <h2>Article 1</h2>
-            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-            <div id="adslot0">
-                <script>
-                   // Call display() to register the slot as ready
-                   // and refresh() to fetch an ad.      
-                   googletag.cmd.push(function() {
-             
-                     //googletag.display('adslot0'); // commented this original code
-                     //googletag.pubads().refresh([adslot0]); // commented this original code
-                     function initAdserver() {
-                       if (PWT.initAdserverSet) return;
-                       PWT.initAdserverSet = true;
-                       googletag.display('adslot0'); // moved original code here
-                       googletag.pubads().refresh([adslot0]); // moved original code here
-                     }
-             
-                     // this is a new code for OpenWrap
-                     if(typeof PWT.requestBids === 'function'){
-                       PWT.requestBids(
-                           PWT.generateConfForGPT( [adslot0] ),
-                           function(adUnitsArray){
-                               initAdserver();
-                           }
-                       );
-                     }else{
-                           initAdserver();
-                     }
-                       
-                     var FAILSAFE_TIMEOUT = 1000; // this timeout should be more than OpenWrap timeout
-                     setTimeout(function() {
-                         initAdserver();
-                     }, FAILSAFE_TIMEOUT);           
-                   });
-                </script>
-            </div>
-            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-            <button onclick="appendArticle()">Load next article</button>
-        </article>
-    </div>
-    <script>
-        let articleNumber = 1;
-        let appendArticle = () => {
+	<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+		<h5 class="my-0 mr-md-0 font-weight-normal">
+			<a href="/index.html"><img src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" style="height: 30px" /></a>
+		</h5>
+		<h3 class="my-1 mr-md-auto" style="margin: 0 auto !important">OpenWrap Infinite Scroll</h3>
+		<nav class="my-2 my-md-0 mr-md-3"></nav>
+	</div>
+	<div id="article-feed">
+		<!-- .articles will be added to .article-feed -->
+		<article class="article">
+			<h2>Article 1</h2>
+			<p>
+				Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+				libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
+				sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis
+				pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt
+				quis, accumsan porttitor, facilisis luctus, metus
+			</p>
+			<div id="adslot0">
+				<script>
+					// Call display() to register the slot as ready
+					// and refresh() to fetch an ad.
+					googletag.cmd.push(function () {
+						//googletag.display('adslot0'); // commented this original code
+						//googletag.pubads().refresh([adslot0]); // commented this original code
+						function initAdserver() {
+							if (PWT.initAdserverSet) return;
+							PWT.initAdserverSet = true;
+							googletag.display("adslot0"); // moved original code here
+							googletag.pubads().refresh([adslot0]); // moved original code here
+						}
 
-            articleNumber++ //Itterate article
+						// this is a new code for OpenWrap
+						if (typeof PWT.requestBids === "function") {
+							PWT.requestBids(PWT.generateConfForGPT([adslot0]), function (adUnitsArray) {
+								initAdserver();
+							});
+						} else {
+							initAdserver();
+						}
 
-            //create dummy article text
-            const articleHTML = "<article class=\"article\">" +
-            "<h2>Article " + articleNumber + "</h2>" +
-            "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>" +
-            "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>" +
-            "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>" +
-            "<button onclick=\"appendArticle()\">Load next article</button>" +
-            "</article>";
-            document.getElementById("article-feed").insertAdjacentHTML('beforeend', articleHTML)
-            
+						var FAILSAFE_TIMEOUT = 1000; // this timeout should be more than OpenWrap timeout
+						setTimeout(function () {
+							initAdserver();
+						}, FAILSAFE_TIMEOUT);
+					});
+				</script>
+			</div>
+			<p>
+				Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+				libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
+				sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis
+				pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt
+				quis, accumsan porttitor, facilisis luctus, metus
+			</p>
+			<p>
+				Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+				libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
+				sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis
+				pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt
+				quis, accumsan porttitor, facilisis luctus, metus
+			</p>
+			<button onclick="appendArticle()">Load next article</button>
+		</article>
+	</div>
+	<script>
+		let articleNumber = 1;
+		let appendArticle = () => {
+			articleNumber++; //Itterate article
 
-            let slotName = "adslot" + articleNumber; //create unique ad slot id
+			//create dummy article text
+			const articleHTML =
+				'<article class="article">' +
+				"<h2>Article " +
+				articleNumber +
+				"</h2>" +
+				"<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>" +
+				"<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>" +
+				"<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>" +
+				'<button onclick="appendArticle()">Load next article</button>' +
+				"</article>";
+			document.getElementById("article-feed").insertAdjacentHTML("beforeend", articleHTML);
 
-            //Defining new ad slot
-            var slotDiv = document.createElement('div');
-            slotDiv.id =  slotName;// Id must be the same as slotName
-            slotDiv.style.width = "300px"
-            slotDiv.style.height = "250px"
-            document.querySelectorAll("article:last-child > p")[1].appendChild(slotDiv);
+			let slotName = "adslot" + articleNumber; //create unique ad slot id
 
-            googletag.cmd.push(function() {
-            var slot = googletag.defineSlot('/53373454/owstandard-pm', [300, 250], slotName).
-                addService(googletag.pubads());
-            // Display has to be called before
-            // refresh and after the slot div is in the page.
-            // googletag.display(slotName); // commented original code
-            // googletag.pubads().refresh([slot]); // commented original code
-        
-            function initAdserver() {
-                if (PWT.initAdserverSet) return;
-                PWT.initAdserverSet = true;
-                googletag.display(slotName); // moved original code here
-                googletag.pubads().refresh([slot]); // moved original code here
-            }
-        
-                // this is a new code for OpenWrap
-                if(typeof PWT.requestBids === 'function'){
-                PWT.initAdserverSet = false;
-                PWT.requestBids(
-                    PWT.generateConfForGPT( [slot] ),
-                    function(adUnitsArray){
-                        PWT.addKeyValuePairsToGPTSlots(adUnitsArray);
-                        initAdserver();
-                    }        
-                );
-                }else{
-                        initAdserver();
-                }
-        
-                var FAILSAFE_TIMEOUT = 1000; // this timeout should be more than OpenWrap timeout
-                setTimeout(function() {
-                    initAdserver();
-                }, FAILSAFE_TIMEOUT);           
-            });
-        }
-    </script>
+			//Defining new ad slot
+			var slotDiv = document.createElement("div");
+			slotDiv.id = slotName; // Id must be the same as slotName
+			slotDiv.style.width = "300px";
+			slotDiv.style.height = "250px";
+			document.querySelectorAll("article:last-child > p")[1].appendChild(slotDiv);
+
+			googletag.cmd.push(function () {
+				var slot = googletag.defineSlot("/53373454/owstandard-pm", [300, 250], slotName).addService(googletag.pubads());
+				// Display has to be called before
+				// refresh and after the slot div is in the page.
+				// googletag.display(slotName); // commented original code
+				// googletag.pubads().refresh([slot]); // commented original code
+
+				function initAdserver() {
+					if (PWT.initAdserverSet) return;
+					PWT.initAdserverSet = true;
+					googletag.display(slotName); // moved original code here
+					googletag.pubads().refresh([slot]); // moved original code here
+				}
+
+				// this is a new code for OpenWrap
+				if (typeof PWT.requestBids === "function") {
+					PWT.initAdserverSet = false;
+					PWT.requestBids(PWT.generateConfForGPT([slot]), function (adUnitsArray) {
+						PWT.addKeyValuePairsToGPTSlots(adUnitsArray);
+						initAdserver();
+					});
+				} else {
+					initAdserver();
+				}
+
+				var FAILSAFE_TIMEOUT = 1000; // this timeout should be more than OpenWrap timeout
+				setTimeout(function () {
+					initAdserver();
+				}, FAILSAFE_TIMEOUT);
+			});
+		};
+	</script>
 </body>
-
