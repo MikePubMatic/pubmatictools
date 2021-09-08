@@ -1,0 +1,4 @@
+#ignore test files
+test*
+#ignore DS_store
+.DS_Store
