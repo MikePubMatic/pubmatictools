@@ -3,7 +3,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta charset="utf-8" />
 	<title>OpenWrap -- Infinite Scroll</title>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
 	<script src="js/consoleOutput.js" defer></script>
 	<script type="text/javascript">
 		var PWT = {}; //Initialize Namespace
@@ -66,19 +66,11 @@
 		});
 	</script>
 	<style>
-        .article {
-			max-width: 40%;
-			padding: 10px;
+		h5,
+		h4 {
+			margin-bottom: 0px;
 		}
 		#console-log-div {
-			min-height: 55px;
-			position: absolute;
-			width: 50%;
-			left: 45%;
-			top: 104px;
-			margin: 10px;
-			padding: 5px 0 0 0;
-
 			font-family: "Input Mono", monospace;
 			font-weight: 400;
 			font-size: 0.8em;
@@ -111,88 +103,7 @@
 			overflow-y: scroll;
 			max-height: 80vh;
 		}
-		/* Extra small devices (phones, 600px and down) */
-		@media only screen and (max-width: 600px) {
-			#console-log-div {
-				position: relative;
-				width: auto;
-				padding: 10px;
-				left: auto;
-				top: auto;
-			}
-            .article {
-			max-width: 100%;
-			padding: 10px;
-		}
-		}
 	</style>
-</head>
-<body>
-	<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-		<h5 class="my-0 mr-md-0 font-weight-normal">
-			<a href="/index.html"><img src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" style="height: 30px" /></a>
-		</h5>
-		<h3 class="my-1 mr-md-auto" style="margin: 0 auto !important">OpenWrap Infinite Scroll</h3>
-		<nav class="my-2 my-md-0 mr-md-3"></nav>
-	</div>
-	<div id="article-feed">
-		<!-- .articles will be added to .article-feed -->
-		<article class="article">
-			<h2>Article 1</h2>
-			<p>
-				Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-				libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-				sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis
-				pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt
-				quis, accumsan porttitor, facilisis luctus, metus
-			</p>
-			<div id="adslot0">
-				<script>
-					// Call display() to register the slot as ready
-					// and refresh() to fetch an ad.
-					googletag.cmd.push(function () {
-						//googletag.display('adslot0'); // commented this original code
-						//googletag.pubads().refresh([adslot0]); // commented this original code
-						function initAdserver() {
-							if (PWT.initAdserverSet) return;
-							PWT.initAdserverSet = true;
-							googletag.display("adslot0"); // moved original code here
-							googletag.pubads().refresh([adslot0]); // moved original code here
-						}
-
-						// this is a new code for OpenWrap
-						if (typeof PWT.requestBids === "function") {
-							PWT.requestBids(PWT.generateConfForGPT([adslot0]), function (adUnitsArray) {
-								initAdserver();
-							});
-						} else {
-							initAdserver();
-						}
-
-						var FAILSAFE_TIMEOUT = 1000; // this timeout should be more than OpenWrap timeout
-						setTimeout(function () {
-							initAdserver();
-						}, FAILSAFE_TIMEOUT);
-					});
-				</script>
-			</div>
-			<p>
-				Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-				libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-				sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis
-				pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt
-				quis, accumsan porttitor, facilisis luctus, metus
-			</p>
-			<p>
-				Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-				libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-				sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis
-				pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt
-				quis, accumsan porttitor, facilisis luctus, metus
-			</p>
-			<button onclick="appendArticle()">Load next article</button>
-		</article>
-	</div>
 	<script>
 		let articleNumber = 1;
 		let appendArticle = () => {
@@ -201,9 +112,9 @@
 			//create dummy article text
 			const articleHTML =
 				'<article class="article">' +
-				"<h2>Article " +
+				"<h5>Article " +
 				articleNumber +
-				"</h2>" +
+				"</h5>" +
 				"<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>" +
 				"<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>" +
 				"<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>" +
@@ -252,4 +163,90 @@
 			});
 		};
 	</script>
+</head>
+<body>
+	<div class="bg-white border-bottom box-shadow">
+		<div class="container-fluid">
+			<div class="row justify-content-start">
+				<h5 class="col font-weight-normal p-3">
+					<a href="/index.html"><img src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" style="height: 30px" /></a>
+				</h5>
+				<nav class="my-2 my-md-0 mr-md-3"></nav>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<h4 class="my-3" style="text-align: center">OpenWrap Infinite Scroll Demo</h4>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row" style="padding: 20px">
+			<div id="article-feed" class="col-md">
+				<!-- .articles will be added to .article-feed -->
+				<article class="article">
+					<h5>Article 1</h5>
+					<p>
+						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+						Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat
+						wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
+						non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.
+						Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+					</p>
+					<div id="adslot0" style="width: 300px; height: 250px">
+						<script>
+							// Call display() to register the slot as ready
+							// and refresh() to fetch an ad.
+							googletag.cmd.push(function () {
+								//googletag.display('adslot0'); // commented this original code
+								//googletag.pubads().refresh([adslot0]); // commented this original code
+								function initAdserver() {
+									if (PWT.initAdserverSet) return;
+									PWT.initAdserverSet = true;
+									googletag.display("adslot0"); // moved original code here
+									googletag.pubads().refresh([adslot0]); // moved original code here
+								}
+
+								// this is a new code for OpenWrap
+								if (typeof PWT.requestBids === "function") {
+									PWT.requestBids(PWT.generateConfForGPT([adslot0]), function (adUnitsArray) {
+										PWT.addKeyValuePairsToGPTSlots(adUnitsArray);
+										initAdserver();
+									});
+								} else {
+									initAdserver();
+								}
+
+								var FAILSAFE_TIMEOUT = 1000; // this timeout should be more than OpenWrap timeout
+								setTimeout(function () {
+									initAdserver();
+								}, FAILSAFE_TIMEOUT);
+							});
+						</script>
+					</div>
+					<p>
+						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+						Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat
+						wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
+						non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.
+						Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+					</p>
+					<p>
+						Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+						Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat
+						wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
+						non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.
+						Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+					</p>
+					<button onclick="appendArticle()">Load next article</button>
+				</article>
+			</div>
+			<div class="col-6">
+				<h5>Console Output</h5>
+				<div id="consoleDiv" style="overflow-y: scroll"></div>
+			</div>
+		</div>
+	</div>
 </body>

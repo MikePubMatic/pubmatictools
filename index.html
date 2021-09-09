@@ -25,99 +25,108 @@
 		</script>
 	</head>
 	<!-- Bootstrap core CSS -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
 	<body>
-		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-			<h5 class="my-0 mr-md-0 font-weight-normal">
-				<a href="/index.html"><img src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" style="height: 30px" /></a>
-			</h5>
-			<nav class="my-2 my-md-0 mr-md-3"></nav>
-		</div>
+		<div class="container-fluid">
+			<div class="row align-items-start p-3 border-bottom box-shadow">
+				<h5 class="my-0 mr-md-0 font-weight-normal">
+					<a href="/index.html"><img src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" style="height: 30px" /></a>
+				</h5>
+				<nav class="my-2 my-md-0 mr-md-3"></nav>
+			</div>
 
-		<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-			<h3 class="font-weight-normal">Example OpenWrap demos</h3>
-			<p class="lead"></p>
+			<div class="row align-items-center p-3 text-center">
+				<h3 class="font-weight-normal">Example OpenWrap demos</h3>
+				<p class="lead"></p>
+			</div>
 		</div>
 
 		<div class="container">
-			<div class="card-deck mb-3 text-center">
-				<div class="card mb-4 box-shadow">
-					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">Standard OW Demo</h4>
+			<div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+				<div class="col">
+					<div class="card h-100 box-shadow">
+						<div class="card-header">
+							<h4 class="my-0 font-weight-normal">Standard OW Demo</h4>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled mt-3 mb-4">
+								<img style="width: 100px; height: 100px" src="https://pubmatic.com/wp-content/uploads/2019/02/icon-OpenWrapHeaderBidding.svg" class="img-responsive" alt="" />
+								<li>A standard GAM OpenWrap integration</li>
+							</ul>
+							<a href="demos/standard-demo.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button></a>
+						</div>
 					</div>
-					<div class="card-body">
-						<ul class="list-unstyled mt-3 mb-4">
+				</div>
+				<div class="col">
+					<div class="card h-100 box-shadow">
+						<div class="card-header">
+							<h4 class="my-0 font-weight-normal">OW video demo</h4>
+						</div>
+						<div class="card-body">
+							<img style="width: 100px; height: 100px" src="https://pubmatic.com/wp-content/uploads/2020/02/icon-Omnichannel-Monetization-blue.svg" class="img-responsive" alt="" />
+							<ul class="list-unstyled mt-3 mb-4">
+								<li>Example OW video integration</li>
+							</ul>
+							<a href="demos/video-demo.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-outline-primary" style="width: 52%">video.js + IMA</button></a>
+							<a href="demos/jwplayer-demo.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-outline-primary" style="width: 43%">JW player</button></a>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card h-100 box-shadow">
+						<div class="card-header">
+							<h4 class="my-0 font-weight-normal">Infinite Scroll</h4>
+						</div>
+						<div class="card-body">
+							<img style="width: 100px; height: 100px" src="https://pubmatic.com/wp-content/uploads/2020/02/icon-Results-Centric-Approach-blue.svg" class="img-responsive" alt="" />
+							<ul class="list-unstyled mt-3 mb-4">
+								<li>Infinite scroll demo using hooks</li>
+							</ul>
+							<a href="demos/infinite-scroll.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="card h-100 box-shadow">
+						<div class="card-header">
+							<h4 class="my-0 font-weight-normal">AMP demo</h4>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled mt-3 mb-4">
+								<img style="width: 100px; height: 100px" src="https://pubmatic.com/wp-content/uploads/2019/02/icon-InAppSDK.svg" class="img-responsive" alt="" />
+								<li>An example RTC AMP integration</li>
+							</ul>
+							<a href="demos/amp-demo.html"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button></a>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card h-100 box-shadow">
+						<div class="card-header">
+							<h4 class="my-0 font-weight-normal">Multislot demo</h4>
+						</div>
+						<div class="card-body">
 							<img style="width: 100px; height: 100px" src="https://pubmatic.com/wp-content/uploads/2019/02/icon-OpenWrapHeaderBidding.svg" class="img-responsive" alt="" />
-							<li>A standard GAM OpenWrap integration</li>
-						</ul>
-						<a href="demos/standard-demo.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button></a>
+							<ul class="list-unstyled mt-3 mb-4">
+								<li>Separate video and banner units</li>
+							</ul>
+							<a href="demos/multislot-banner-video.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button></a>
+						</div>
 					</div>
 				</div>
-
-				<div class="card mb-4 box-shadow">
-					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">OW video demo</h4>
-					</div>
-					<div class="card-body">
-						<img style="width: 100px; height: 100px" src="https://pubmatic.com/wp-content/uploads/2020/02/icon-Omnichannel-Monetization-blue.svg" class="img-responsive" alt="" />
-						<ul class="list-unstyled mt-3 mb-4">
-							<li>Example OW video integration</li>
-						</ul>
-						<a href="demos/video-demo.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-outline-primary" style="width: 52%">video.js + IMA</button></a>
-						<a href="demos/jwplayer-demo.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-outline-primary" style="width: 43%">JW player</button></a>
-					</div>
-				</div>
-
-				<div class="card mb-4 box-shadow">
-					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">Infinite Scroll</h4>
-					</div>
-					<div class="card-body">
-						<img style="width: 100px; height: 100px" src="https://pubmatic.com/wp-content/uploads/2020/02/icon-Results-Centric-Approach-blue.svg" class="img-responsive" alt="" />
-						<ul class="list-unstyled mt-3 mb-4">
-							<li>Infinite scroll demo using hooks</li>
-						</ul>
-						<a href="demos/infinite-scroll.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button></a>
-					</div>
-				</div>
-			</div>
-
-			<div class="card-deck mb-3 text-center">
-				<div class="card mb-4 box-shadow">
-					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">AMP demo</h4>
-					</div>
-					<div class="card-body">
-						<ul class="list-unstyled mt-3 mb-4">
-							<img style="width: 100px; height: 100px" src="https://pubmatic.com/wp-content/uploads/2019/02/icon-InAppSDK.svg" class="img-responsive" alt="" />
-							<li>An example RTC AMP integration</li>
-						</ul>
-						<a href="demos/amp-demo.html"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button></a>
-					</div>
-				</div>
-				<div class="card mb-4 box-shadow">
-					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">Multislot demo</h4>
-					</div>
-					<div class="card-body">
-						<img style="width: 100px; height: 100px" src="https://pubmatic.com/wp-content/uploads/2019/02/icon-OpenWrapHeaderBidding.svg" class="img-responsive" alt="" />
-						<ul class="list-unstyled mt-3 mb-4">
-							<li>Separate video and banner units</li>
-						</ul>
-						<a href="demos/multislot-banner-video.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button></a>
-					</div>
-				</div>
-
-				<div class="card mb-4 box-shadow">
-					<div class="card-header">
-						<h4 class="my-0 font-weight-normal">OpenWrap + ID Hub</h4>
-					</div>
-					<div class="card-body">
-						<img style="width: 100px; height: 100px" src="https://pubmatic.com/wp-content/uploads/2019/02/icon-Cloud.svg" class="img-responsive" alt="" />
-						<ul class="list-unstyled mt-3 mb-4">
-							<li>OW + ID Hub via GPT</li>
-						</ul>
-						<a href="demos/idhub-ow-demo.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button></a>
+				<div class="col">
+					<div class="card h-100 box-shadow">
+						<div class="card-header">
+							<h4 class="my-0 font-weight-normal">OpenWrap + ID Hub</h4>
+						</div>
+						<div class="card-body">
+							<img style="width: 100px; height: 100px" src="https://pubmatic.com/wp-content/uploads/2019/02/icon-Cloud.svg" class="img-responsive" alt="" />
+							<ul class="list-unstyled mt-3 mb-4">
+								<li>OW + ID Hub via GPT</li>
+							</ul>
+							<a href="demos/idhub-ow-demo.html?pubmaticTest=true&pwtvc=1"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button></a>
+						</div>
 					</div>
 				</div>
 			</div>

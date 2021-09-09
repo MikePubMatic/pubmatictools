@@ -3,7 +3,7 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>OpenWrap Sample Code -- GPT Integration</title>
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
 		<script src="js/consoleOutput.js" defer></script>
 		<script type="text/javascript">
 			var PWT = {}; //Initialize Namespace
@@ -78,15 +78,11 @@
 			});
 		</script>
 		<style>
+			h5,
+			h4 {
+				margin-bottom: 0px;
+			}
 			#console-log-div {
-				min-height: 55px;
-				position: absolute;
-				width: calc(100% - 450px);
-				left: 350px;
-				top: 104px;
-				margin: 10px;
-				padding: 5px 0 0 0;
-
 				font-family: "Input Mono", monospace;
 				font-weight: 400;
 				font-size: 0.8em;
@@ -119,46 +115,53 @@
 				overflow-y: scroll;
 				max-height: 80vh;
 			}
-			/* Extra small devices (phones, 600px and down) */
-			@media only screen and (max-width: 600px) {
-				#console-log-div{
-                    position:relative;
-                    width: auto;
-                    padding:10px;
-                    left:auto;
-                    top:auto;
-                }
-			}
 		</style>
 	</head>
 
 	<body>
-		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-			<h5 class="my-0 mr-md-0 font-weight-normal">
-				<a href="/index.html"><img src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" style="height: 30px" /></a>
-			</h5>
-			<h3 class="my-1 mr-md-auto" style="margin: 0 auto !important">OpenWrap Sample Code -- GPT Integration</h3>
-			<nav class="my-2 my-md-0 mr-md-3"></nav>
+		<div class="bg-white border-bottom box-shadow">
+			<div class="container-fluid">
+				<div class="row justify-content-start">
+					<h5 class="col font-weight-normal p-3">
+						<a href="/index.html"><img src="https://s3.eu-west-2.amazonaws.com/pubmatic-demo/static-site-assets/images/pubmatic-logo.png" style="height: 30px" /></a>
+					</h5>
+						<nav class="my-2 my-md-0 mr-md-3"></nav>
+				</div>
+			</div>
 		</div>
-
-		<h5>Ad 1</h5>
-
-		<div id="div-gpt-ad-1627911006328-0" style="min-height: 250px; min-width: 300px">
-			<script type="text/javascript">
-				googletag.cmd.push(function () {
-					googletag.display("div-gpt-ad-1627911006328-0");
-				});
-			</script>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12" >
+					<h4 class="my-3" style="text-align: center;">OpenWrap Sample Code -- GPT Integration</h4>
+				</div>
+			</div>
 		</div>
-
-		<h5>Ad 2</h5>
-
-		<div id="div-gpt-ad-1627911904697-0" style="min-height: 250px; min-width: 300px">
-			<script type="text/javascript">
-				googletag.cmd.push(function () {
-					googletag.display("div-gpt-ad-1627911904697-0");
-				});
-			</script>
+			<div class="container">
+				<div class="row" style="padding: 20px">
+					<div class="col col-md-4" style="max-width: 300px; padding:0px 15px;">
+						<h5>Ad 1</h5>
+						<div id="div-gpt-ad-1627911006328-0" style="min-height: 250px; min-width: 300px">
+							<script type="text/javascript">
+								googletag.cmd.push(function () {
+									googletag.display("div-gpt-ad-1627911006328-0");
+								});
+							</script>
+						</div>
+						<h5>Ad 2</h5>
+						<div id="div-gpt-ad-1627911904697-0" style="min-height: 600px; min-width: 300px">
+							<script type="text/javascript">
+								googletag.cmd.push(function () {
+									googletag.display("div-gpt-ad-1627911904697-0");
+								});
+							</script>
+						</div>
+					</div>
+					<div class="col-md-9">
+						<h5>Console Output</h5>
+						<div id="consoleDiv" style="overflow-y: scroll"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

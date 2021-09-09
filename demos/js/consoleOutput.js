@@ -63,7 +63,7 @@
     if (!outer) {
       outer = d.createElement('fieldset');
       outer.id = id;
-      d.body.appendChild(outer);
+      d.getElementById("consoleDiv").appendChild(outer);
     }
     var style = outer.style;
     return outer;
@@ -72,11 +72,11 @@
   var logTo = (function createLogDiv() {
 
     var outer = createOuterElement(consoleId);
-    var caption = d.createTextNode('Console Output');
-    var legend = d.createElement('div');
-    legend.id = "legend";
-    legend.appendChild(caption);
-    outer.appendChild(legend);
+    //var caption = d.createTextNode('Console Output');
+    //var legend = d.createElement('div');
+    //legend.id = "legend";
+    //legend.appendChild(caption);
+    //outer.appendChild(legend);
 
     var div = d.createElement('div');
     div.id = 'console-log-text';
